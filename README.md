@@ -1,6 +1,6 @@
 # k8s-essentials
 
-# helpful randome command
+# helpful random command
 ```
 
 k run mypod --image=nginx 
