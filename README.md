@@ -87,3 +87,18 @@ spec:
 to remove tain:
 k taint nodes controlplane run=mypod:NoSchedule- 
 ```
+
+# rollout
+
+```
+k create deployment nginx-deployment --image=nginx:1.14.1
+k rollout history deployment/nginx-deployment
+everytime when u deploy and under template something  get changed like cotainer image from let's say 1.1 to 1.2 etc rollout get  triggerd which u can check from above command
+below commad will record the change-cause also.
+k set  image deployment nginx-deployment ngix=ngix:1.16.1 --record=true
+ in case u want to check diff do below:
+ k rollout history deployment/nginx-deployment  --revision=2
+
+ now let;s rollout to back version
+ k rollout undo  deployment  nginx-deployment --to-revision=1
+```
