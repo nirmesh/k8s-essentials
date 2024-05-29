@@ -69,3 +69,21 @@ then u have to attach sa to pod for that in spec just add serviceaccount ame key
 
 kubectl auth can-i get pod --as=system:serviceaccount:default:mysa
 ```
+
+# taint and toleration
+```
+taint on node:
+k taint nodes controlpane run=mypod:NoSchedule
+tolerate on pod:
+k run toleration-pod --image=nginx --restart=Never --dry-run -o yaml > pod.yaml
+k get pod -o wide ---> this will gine node info as well
+spec:
+ tolerations:
+ - key: "run"
+   operator: "Equal"
+   value: "mypod"
+   effect: "NoSchedule" 
+
+to remove tain:
+k taint nodes controlplane run=mypod:NoSchedule- 
+```
